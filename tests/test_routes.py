@@ -140,7 +140,7 @@ class TestAccountService(TestCase):
         """It should test for an account that was not found"""
         resp = self.client.get(f"{BASE_URL}/0")
         self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
-   
+
     def test_list_all_accounts(self):
         """It should list all existing accounts"""
         self._create_accounts(5)
@@ -173,6 +173,7 @@ class TestAccountService(TestCase):
     #  S E C U R I T Y   T E S T   C A S E S
 ######################################################################
 
+
     def test_security_headers(self):
         """It should return security headers"""
         response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
@@ -191,3 +192,4 @@ class TestAccountService(TestCase):
         response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.headers.get('Access-Control-Allow-Origin'), '*')
+        
